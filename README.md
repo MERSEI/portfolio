@@ -1,116 +1,36 @@
-# Portfolio - Alex (Flowe)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Professional portfolio website showcasing AI-augmented product engineering work and featured projects.
+## Getting Started
 
-## 🚀 Features
-
-- **Modern Design**: Clean, professional interface built with Next.js and Tailwind CSS
-- **Dark Theme**: Eye-friendly dark mode optimized for developer portfolios
-- **Responsive**: Mobile-first design that works on all devices
-- **Project Showcase**: Detailed project cards with tech stacks, metrics, and experience
-- **Performance**: Built with Turbopack for fast builds and optimized production output
-
-## 📋 Projects Featured
-
-1. **QR-Creator** - Professional QR code generator
-   - Tech: React, JavaScript, Tailwind CSS
-   - 12K+ users, 45K+ QR codes generated
-
-2. **OFDashboard** - AI-powered chat management dashboard
-   - Tech: Python, Streamlit, PostgreSQL, WebSockets
-   - 8.5K+ active sessions, €15K+ revenue processed
-
-3. **Dashboard** - Crypto trading platform
-   - Tech: TypeScript, React, WebSockets
-   - 5.2K+ users, $8.7M+ trading volume
-
-4. **SGT** - Full-featured web application
-   - Tech: React, JavaScript, Vercel
-   - 6.8K+ users, 34K+ interactions
-
-5. **Vibe** - UI component library
-   - Tech: React, JavaScript, Design System
-   - 3.9K+ users, 28K+ components
-
-## 🛠️ Tech Stack
-
-### Frontend
-- Next.js 16+
-- React 19+
-- TypeScript
-- Tailwind CSS v4
-- Responsive Design
-
-### Backend & Deployment
-- Node.js
-- Vercel
-- Static Generation & ISR
-
-## 📦 Installation
+First, run the development server:
 
 ```bash
-# Clone repository
-git clone <repo-url>
-cd portfolio
-
-# Install dependencies
-npm install
-
-# Run development server
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in browser.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🏗️ Build & Deploy
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-# Build production version
-npm run build
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-# Start production server
-npm start
-```
+## Learn More
 
-### Deploy to Vercel
+To learn more about Next.js, take a look at the following resources:
 
-```bash
-# Install Vercel CLI
-npm i -g vercel
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-# Deploy
-vercel
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Or connect your GitHub repository to Vercel dashboard:
-1. Go to [vercel.com](https://vercel.com)
-2. Sign in with GitHub
-3. Import this repository
-4. Vercel will auto-detect Next.js and deploy
+## Deploy on Vercel
 
-## 📝 Customization
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### Update Projects
-Edit `app/page.tsx` - `projects` array to add/modify project cards.
-
-### Change Colors
-Update Tailwind theme in `tailwind.config.js`
-
-### Modify Content
-All main content is in `app/page.tsx` - hero, projects, about sections
-
-## 📊 Performance
-
-- Lighthouse Score: 95+
-- Time to First Byte: <100ms
-- Fully Static - No server-side rendering needed
-
-## 📄 License
-
-MIT License - Feel free to use as inspiration for your own portfolio
-
-## 👤 About
-
-Built by Alex (Flowe) - AI-Augmented Product Engineer
-
-**GitHub**: [MERSEI](https://github.com/MERSEI)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

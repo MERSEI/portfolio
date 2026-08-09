@@ -1,5 +1,0 @@
-{
-  "buildCommand": "npm run build",
-  "env": {},
-  "devCommand": "npm run dev"
-}
