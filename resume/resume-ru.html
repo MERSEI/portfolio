@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Александр Фиалко — Full-Stack &amp; AI инженер</title>
+<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+
+<header>
+  <div class="name">Александр Фиалко</div>
+  <div class="title">Full-Stack &amp; AI инженер</div>
+  <div class="meta">Прага, Чехия <span class="sep">·</span> Удалённо (CET) <span class="sep">·</span> Есть право на работу в ЧР/ЕС</div>
+  <div class="contacts">
+    <a href="mailto:aleksfialko15@gmail.com">aleksfialko15@gmail.com</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/MERSEI">github.com/MERSEI</a>
+    <span class="sep">·</span>
+    <a href="https://www.linkedin.com/in/alex-fialko-2a0275356">linkedin.com/in/alex-fialko</a>
+    <span class="sep">·</span>
+    <a href="https://t.me/f1_owe">t.me/f1_owe</a>
+  </div>
+</header>
+
+<section>
+  <h2>О себе</h2>
+  <p class="summary">Full-stack инженер с четырьмя годами коммерческого опыта: веду продукт целиком — от требований и архитектуры до продакшен-деплоя и доработок по реальному использованию. Специализация — интеграции LLM и автоматизация: RAG-пайплайны, мультиагентная оркестрация, Telegram-боты с настоящей бизнес-логикой. Спокойно тяну продукт в одиночку от пустого репозитория до живого URL, лидировал команды до четырёх разработчиков на проектной основе. AI-инструменты использую осознанно: они сокращают путь от идеи до работающего кода, но за каждую строку отвечаю сам.</p>
+</section>
+
+<section>
+  <h2>Стек</h2>
+  <div class="stack-row">
+    <div class="stack-label">Frontend</div>
+    <div class="stack-value">React · Next.js · TypeScript · Vite · Tailwind CSS · shadcn/ui</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">Backend</div>
+    <div class="stack-value">Python · Node.js · Express · REST · WebSocket · JWT</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">AI / LLM</div>
+    <div class="stack-value">OpenAI · Claude · Gemini API · RAG на pgvector (гибридный BM25 + vector) · мультиагентная оркестрация · prompt engineering</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">Данные</div>
+    <div class="stack-value">PostgreSQL · SQLite · MongoDB · Prisma</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">Инфра</div>
+    <div class="stack-value">Docker · Railway · Vercel · S3 · Git · OpenTelemetry · Vitest</div>
+  </div>
+</section>
+
+<section>
+  <h2>Опыт</h2>
+
+  <div class="entry">
+    <div class="entry-head">
+      <div>
+        <span class="role">Full-Stack &amp; AI инженер</span>
+        <span class="where">— Фриланс · Прага / удалённо</span>
+      </div>
+      <div class="when">2022 — наст. время</div>
+    </div>
+    <ul>
+      <li>Делал веб-приложения, операторские дашборды и инструменты автоматизации для платящих клиентов под ключ: ТЗ, архитектура, разработка, деплой и доработки после запуска.</li>
+      <li>Выпустил 10+ продакшен-ботов в Telegram с авторизацией, платежами, админ-панелями, планировщиками задач и постоянным хранилищем.</li>
+      <li>Лидировал команды до четырёх разработчиков на проектной основе — архитектурные решения, код-ревью, коммуникация с клиентом.</li>
+      <li>Строил LLM-функциональность, которая живёт в проде, а не в пилотах: оценка релевантности, retrieval-augmented generation, AI-ассистированная переписка, мультиагентная оркестрация задач.</li>
+      <li>Стандартизировал доставку на Railway и Vercel по паттерну «real API + mock fallback» — демо и staging поднимаются без живых ключей.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Избранные проекты</h2>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">VibeIDE <span class="dash">— совместная AI-среда разработки</span></div>
+      <div class="proj-link">github.com/MERSEI/Vibe</div>
+    </div>
+    <div class="proj-stack">React · Vite · Liveblocks + Yjs · Gemini 2.0 Flash · Express · PostgreSQL/pgvector · NATS · OpenTelemetry · Railway</div>
+    <div class="proj-body">Редактор Monaco с CRDT-синхронизацией текста на собственном биндинге Liveblocks/Yjs — готовый y-monaco оказался несовместим; мультиагентный DAG-оркестратор с параллельным выполнением ветвей через топологическую сортировку; гибридный RAG-пайплайн BM25 + vector на pgvector. Трейсинг с двойным экспортом в Grafana Tempo. Около 10 000 строк с набором тестов на Vitest, соло за четыре дня, задеплоено.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">AI Integrator <span class="dash">— маркетплейс LLM-инструментов для продаж</span></div>
+      <div class="proj-link">ai-integrator-landing.vercel.app</div>
+    </div>
+    <div class="proj-stack">Next.js · TypeScript · Tailwind CSS · Gemini API · Vercel</div>
+    <div class="proj-body">Десять живых LLM-инструментов на одной площадке — персонализация холодных писем, обработка возражений, радар лидов и другие — с rate-limiting на каждый инструмент и честным демо-режимом там, где нужен живой скрапинг, недоступный в serverless. Двуязычная EN/RU маршрутизация, около 10 000 строк, спроектировано и построено соло вместе с дизайн-системой.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">Операторский дашборд <span class="dash">— мультиаккаунтные операции контент-платформы</span></div>
+      <div class="proj-link">Клиентский проект</div>
+    </div>
+    <div class="proj-stack">Python · Streamlit · PostgreSQL · WebSockets · Railway</div>
+    <div class="proj-body">Единый операторский интерфейс поверх собственного клиента к платформе: чаты по нескольким аккаунтам в реальном времени в одном окне, AI-ассистированные ответы, аналитика по контенту и выручке. Ролевой доступ с разделением на админа, оператора и демо. Работает в продакшене.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">SkillCoachBot <span class="dash">— Telegram AI-коуч по навыкам</span></div>
+      <div class="proj-link">Приватный репозиторий</div>
+    </div>
+    <div class="proj-stack">Node.js · Telegraf · SQLite · Gemini 2.0 Flash · node-canvas · node-cron · Railway</div>
+    <div class="proj-body">SQLite в WAL-режиме, чтобы крон и обработчики команд читали и писали параллельно, не блокируя друг друга; Gemini генерирует прогрессивные наборы заданий на основе истории выполненного; ежедневные напоминания с изоляцией ошибок на каждого пользователя — падение одного не останавливает рассылку; графики прогресса рендерятся в PNG через node-canvas. Двойной режим webhook/polling на постоянном томе.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">TaskzThreads <span class="dash">— AI-мониторинг лидов</span></div>
+      <div class="proj-link">Приватный репозиторий</div>
+    </div>
+    <div class="proj-stack">Headless-браузер (CDP) · Gemini API · Telegram Bot API</div>
+    <div class="proj-body">Headless-браузер скрапит целевые темы в Threads, Gemini оценивает релевантность каждого поста, и в Telegram в реальном времени попадают только отфильтрованные сигналы. Часть архитектуры переиспользована в последующих инструментах мониторинга.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">Sporysh <span class="dash">— B2B-сайт для экспортёра растительного сырья</span></div>
+      <div class="proj-link">sporysh.vercel.app</div>
+    </div>
+    <div class="proj-stack">Next.js · Tailwind CSS · Vercel</div>
+    <div class="proj-body">Редизайн и разработка на EN/UA для украинского поставщика растительного сырья, продающего международным закупщикам — с опорой на сигналы доверия и презентацию продукта, которая должна сработать за единственный визит перед звонком. Клиентский проект, от макета до деплоя.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Языки</h2>
+  <p class="langs">Русский — родной <span class="sep">·</span> Английский — свободно <span class="sep">·</span> Чешский — базовый</p>
+</section>
+
+</body>
+</html>

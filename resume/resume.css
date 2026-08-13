@@ -1,0 +1,231 @@
+/* Print stylesheet for the CV — rendered to PDF by resume/build.mjs */
+
+@page {
+  size: A4;
+  margin: 13mm 14mm;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #1a1611;
+  --muted: #5a5248;
+  --faint: #8a8073;
+  --accent: #b85c1f;
+  --rule: #ddd6c8;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: "Liberation Sans", "DejaVu Sans", sans-serif;
+  font-size: 9.4pt;
+  line-height: 1.42;
+  color: var(--ink);
+  background: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- header ---------- */
+
+.name {
+  font-size: 23pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.title {
+  margin-top: 3pt;
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.meta {
+  margin-top: 5pt;
+  font-size: 8.8pt;
+  color: var(--muted);
+}
+
+.contacts {
+  margin-top: 3pt;
+  font-size: 8.8pt;
+  color: var(--muted);
+}
+
+.contacts a {
+  border-bottom: 0.5pt solid var(--rule);
+}
+
+.sep {
+  color: var(--faint);
+  padding: 0 3pt;
+}
+
+/* ---------- sections ---------- */
+
+section {
+  margin-top: 13pt;
+}
+
+h2 {
+  font-size: 8.2pt;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 2.5pt;
+  border-bottom: 1pt solid var(--rule);
+  margin-bottom: 7pt;
+}
+
+.summary {
+  color: var(--muted);
+  text-align: justify;
+}
+
+/* ---------- stack ---------- */
+
+.stack-row {
+  display: grid;
+  grid-template-columns: 62pt 1fr;
+  gap: 6pt;
+  margin-bottom: 3.5pt;
+}
+
+.stack-label {
+  font-weight: 700;
+  font-size: 8.8pt;
+  color: var(--ink);
+}
+
+.stack-value {
+  color: var(--muted);
+  font-size: 9pt;
+}
+
+/* ---------- entries ---------- */
+
+.entry {
+  margin-bottom: 10pt;
+  break-inside: avoid;
+}
+
+.entry:last-child {
+  margin-bottom: 0;
+}
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10pt;
+}
+
+.role {
+  font-size: 10.2pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.where {
+  font-size: 9pt;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.when {
+  font-size: 8.6pt;
+  color: var(--faint);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+ul {
+  margin-top: 4pt;
+  list-style: none;
+}
+
+li {
+  position: relative;
+  padding-left: 10pt;
+  margin-bottom: 2.5pt;
+  color: var(--muted);
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 1pt;
+  top: 4.6pt;
+  width: 3pt;
+  height: 3pt;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+/* ---------- projects ---------- */
+
+.proj {
+  margin-bottom: 8.5pt;
+  break-inside: avoid;
+}
+
+.proj:last-child {
+  margin-bottom: 0;
+}
+
+.proj-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10pt;
+}
+
+.proj-name {
+  font-size: 9.8pt;
+  font-weight: 700;
+}
+
+.proj-name .dash {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.proj-link {
+  font-size: 8.2pt;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.proj-stack {
+  margin-top: 1.5pt;
+  font-size: 8.2pt;
+  color: var(--faint);
+  letter-spacing: 0.01em;
+}
+
+.proj-body {
+  margin-top: 2.5pt;
+  color: var(--muted);
+}
+
+/* ---------- footer ---------- */
+
+.langs {
+  color: var(--muted);
+}

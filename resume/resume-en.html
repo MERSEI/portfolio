@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Alex Fialko — Full-Stack &amp; AI Engineer</title>
+<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+
+<header>
+  <div class="name">Alex Fialko</div>
+  <div class="title">Full-Stack &amp; AI Engineer</div>
+  <div class="meta">Prague, Czech Republic <span class="sep">·</span> Remote (CET) <span class="sep">·</span> Eligible to work in CZ/EU</div>
+  <div class="contacts">
+    <a href="mailto:aleksfialko15@gmail.com">aleksfialko15@gmail.com</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/MERSEI">github.com/MERSEI</a>
+    <span class="sep">·</span>
+    <a href="https://www.linkedin.com/in/alex-fialko-2a0275356">linkedin.com/in/alex-fialko</a>
+    <span class="sep">·</span>
+    <a href="https://t.me/f1_owe">t.me/f1_owe</a>
+  </div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">Full-stack engineer with four years of commercial experience building products end to end — requirements, architecture, production deployment, iteration. Focused on LLM integrations and automation: RAG pipelines, multi-agent orchestration, and Telegram bots carrying real business logic. Comfortable owning a product alone from empty repository to live URL, and has led teams of up to four developers on a project basis. Works with AI-augmented tooling deliberately — it shortens the path from idea to working code, and every line still gets owned.</p>
+</section>
+
+<section>
+  <h2>Core Stack</h2>
+  <div class="stack-row">
+    <div class="stack-label">Frontend</div>
+    <div class="stack-value">React · Next.js · TypeScript · Vite · Tailwind CSS · shadcn/ui</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">Backend</div>
+    <div class="stack-value">Python · Node.js · Express · REST · WebSocket · JWT</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">AI / LLM</div>
+    <div class="stack-value">OpenAI · Claude · Gemini APIs · RAG on pgvector (hybrid BM25 + vector) · multi-agent orchestration · prompt engineering</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">Data</div>
+    <div class="stack-value">PostgreSQL · SQLite · MongoDB · Prisma</div>
+  </div>
+  <div class="stack-row">
+    <div class="stack-label">Infra</div>
+    <div class="stack-value">Docker · Railway · Vercel · S3 · Git · OpenTelemetry · Vitest</div>
+  </div>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="entry-head">
+      <div>
+        <span class="role">Full-Stack &amp; AI Engineer</span>
+        <span class="where">— Freelance · Prague / Remote</span>
+      </div>
+      <div class="when">2022 — Present</div>
+    </div>
+    <ul>
+      <li>Delivered web applications, operator dashboards and automation tools for paying clients end to end: specification, architecture, build, deployment, and post-launch iteration.</li>
+      <li>Shipped 10+ production Telegram bots with authentication, payments, admin panels, scheduled jobs and persistent storage.</li>
+      <li>Led teams of up to four developers on a project basis — owning architecture decisions, code review and client communication.</li>
+      <li>Built LLM features that run in production rather than in pilots: relevance scoring, retrieval-augmented generation, AI-assisted messaging, and multi-agent task orchestration.</li>
+      <li>Standardised delivery on Railway and Vercel, with a real-API-plus-mock-fallback integration pattern so demos and staging environments run without live credentials.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Selected Projects</h2>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">VibeIDE <span class="dash">— collaborative AI development environment</span></div>
+      <div class="proj-link">github.com/MERSEI/Vibe</div>
+    </div>
+    <div class="proj-stack">React · Vite · Liveblocks + Yjs · Gemini 2.0 Flash · Express · PostgreSQL/pgvector · NATS · OpenTelemetry · Railway</div>
+    <div class="proj-body">Monaco editor with CRDT text sync over a hand-rolled Liveblocks/Yjs binding after y-monaco proved incompatible; a multi-agent DAG orchestrator running branches in parallel via topological sort; and a hybrid BM25-plus-vector RAG pipeline on pgvector. Tracing dual-exported to Grafana Tempo. Roughly 10,000 lines with a Vitest suite, built solo in four days and deployed.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">AI Integrator <span class="dash">— LLM tools marketplace for sales teams</span></div>
+      <div class="proj-link">ai-integrator-landing.vercel.app</div>
+    </div>
+    <div class="proj-stack">Next.js · TypeScript · Tailwind CSS · Gemini API · Vercel</div>
+    <div class="proj-body">Ten live LLM tools on one platform — cold-email personalisation, objection handling, lead radar and others — with per-tool rate limiting and an explicit demo mode for tools needing live scraping that serverless cannot provide. Bilingual EN/RU routing, roughly 10,000 lines, designed and built solo including the design system.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">Operator Dashboard <span class="dash">— multi-account content-platform operations</span></div>
+      <div class="proj-link">Client project</div>
+    </div>
+    <div class="proj-stack">Python · Streamlit · PostgreSQL · WebSockets · Railway</div>
+    <div class="proj-body">A unified operator interface over a custom platform client: real-time chats across several accounts in one place, AI-assisted replies, and content and revenue analytics. Role-based access separating admin, operator and demo. Running in production.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">SkillCoachBot <span class="dash">— Telegram AI skill coach</span></div>
+      <div class="proj-link">Private repository</div>
+    </div>
+    <div class="proj-stack">Node.js · Telegraf · SQLite · Gemini 2.0 Flash · node-canvas · node-cron · Railway</div>
+    <div class="proj-body">SQLite in WAL mode so cron jobs and command handlers read and write concurrently without blocking each other; Gemini generates progressive task sets from completion history; daily reminders isolate errors per user so one failure cannot stop the batch; progress charts rendered to PNG via node-canvas. Dual webhook/polling mode on a persistent volume.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">TaskzThreads <span class="dash">— AI lead monitoring</span></div>
+      <div class="proj-link">Private repository</div>
+    </div>
+    <div class="proj-stack">Headless browser (CDP) · Gemini API · Telegram Bot API</div>
+    <div class="proj-body">A headless browser scrapes target topics on Threads, Gemini scores each post for relevance, and only filtered signals reach Telegram in real time. Parts of the architecture were reused across later monitoring tools.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <div class="proj-name">Sporysh <span class="dash">— B2B site for a raw-materials exporter</span></div>
+      <div class="proj-link">sporysh.vercel.app</div>
+    </div>
+    <div class="proj-stack">Next.js · Tailwind CSS · Vercel</div>
+    <div class="proj-body">Redesign and build in EN/UA for a Ukrainian supplier of plant-based raw materials selling to international buyers — built around trust signals and a product presentation that has to land in the single visit before a call. Client project, design through deploy.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Languages</h2>
+  <p class="langs">Russian — native <span class="sep">·</span> English — fluent <span class="sep">·</span> Czech — basic</p>
+</section>
+
+</body>
+</html>
