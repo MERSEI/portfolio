@@ -18,6 +18,78 @@ export type Case = {
 
 export const cases: Case[] = [
   {
+    slug: "debrief",
+    title: "Debrief",
+    isPrivateScope: true,
+    stack: [
+      "Python 3.11+",
+      "PyAudioWPatch (WASAPI loopback)",
+      "faster-whisper",
+      "Anthropic structured outputs",
+      "Pydantic",
+      "httpx",
+      "pytest",
+    ],
+    links: {},
+    ru: {
+      tagline: "Протокол созвона из двух дорожек вместо диаризации",
+      problem:
+        "Стандартный путь — записать созвон одним смешанным потоком и потом разделить голоса диаризацией. Это вероятностный шаг, и ошибается он ровно там, где дороже всего: на перебиваниях и коротких репликах, из которых и состоят договорённости.",
+      system:
+        "Микрофон и системный вывод пишутся двумя независимыми потоками WASAPI в два файла с общим нулём времени, поэтому спикер известен по источнику дорожки, а не по похожести голоса. Взамен появляется акустическое эхо: при звуке в колонках фраза собеседника попадает в обе дорожки. Эхо-фильтр требует одновременно перекрытия по времени и текстуальной похожести — перекрытие без похожести это обычное перебивание, и терять его нельзя. Распознавание локальное, поэтому запись не покидает машину и час разговора стоит ноль. Протокол собирается через structured outputs с валидацией схемы на стороне API, а не парсингом markdown из ответа.",
+      role: "Соло-разработка: архитектура захвата, ядро слияния дорожек, схема разбора.",
+      outcome:
+        "18 тестов на ядро — слияние, эхо-фильтр, рендер протокола. Промпт контрактно запрещает достраивать смысл: пустой раздел это нормальный результат, выдуманный — брак. Захват работает только на Windows, разбор уже записанных дорожек — на любой ОС.",
+    },
+    en: {
+      tagline: "Meeting minutes from two tracks instead of diarization",
+      problem:
+        "The standard approach records a call as one mixed stream and then splits the voices by diarization. That step is probabilistic, and it fails exactly where the cost is highest — on interruptions and short replies, which is what commitments are made of.",
+      system:
+        "The microphone and the system output are captured as two independent WASAPI streams into two files sharing one time origin, so the speaker follows from the track, not from voice similarity. The tradeoff is acoustic echo: with sound on speakers, the other party's words land on both tracks. The echo filter demands time overlap and textual similarity at once — overlap without similarity is an ordinary interruption, and losing it is not acceptable. Transcription runs locally, so recordings never leave the machine and an hour of talk costs nothing. The minutes are produced through structured outputs validated against a schema API-side, not by parsing markdown out of the reply.",
+      role: "Solo build: capture architecture, track-merging core, extraction schema.",
+      outcome:
+        "18 tests over the core — merging, echo filter, minutes rendering. The prompt is contractually barred from inferring meaning: an empty section is a valid result, an invented one is a defect. Capture is Windows-only; processing already-recorded tracks runs anywhere.",
+    },
+  },
+  {
+    slug: "pulse",
+    title: "Pulse",
+    isPrivateScope: true,
+    stack: [
+      "Python 3.11+ (asyncio)",
+      "aiogram 3",
+      "httpx",
+      "Railway GraphQL API",
+      "Vercel REST API",
+      "SQLite",
+      "Anthropic structured outputs",
+      "Docker",
+      "Railway",
+    ],
+    links: {},
+    ru: {
+      tagline: "Watchdog для десятка сервисов, который не превращается в шум",
+      problem:
+        "Дёргать URL раз в минуту и писать в Telegram на каждый пятисотый — час работы. Через день такой бот превращается в поток, который перестают читать, и тогда он хуже, чем ничего: создаёт ощущение контроля, которого нет.",
+      system:
+        "Пробы по HTTP, Railway GraphQL и Vercel REST — обвязка; ядро это политика алертинга. Инцидент подтверждается N подряд отказами, поэтому одиночный таймаут сети никого не будит. Пока инцидент открыт, повтор не шлётся — только редкое напоминание по cooldown. Отдельный статус «не знаю» разводит падение сервиса и неспособность пробы это выяснить: протухший токен не выглядит как отказ и не закрывает открытый инцидент. Состояние живёт в SQLite, иначе перезапуск контейнера рассылал бы алерты по уже известным падениям заново. При подтверждённом падении тянется хвост логов деплоя и модель называет причину по схеме — причина, строка-основание, действие, уверенность.",
+      role: "Соло-разработка: архитектура, политика алертинга, интеграции с провайдерами.",
+      outcome:
+        "29 тестов: флаппинг, дедуп, cooldown, мьют, неизвестный статус, персистентность и жизненный цикл инцидентов. Падение триажа не роняет алерт — сообщение о том, что сервис лежит, важнее объяснения почему. Перезапуск деплоя из чата требует отдельного подтверждения: это действие на проде.",
+    },
+    en: {
+      tagline: "A watchdog over a dozen services that doesn't become noise",
+      problem:
+        "Polling a URL every minute and pinging Telegram on every 500 is an hour of work. A day later that bot is a stream nobody reads, which is worse than nothing: it creates a sense of control that isn't there.",
+      system:
+        "The HTTP, Railway GraphQL and Vercel REST probes are plumbing; the core is the alerting policy. An incident is confirmed only after N consecutive failures, so a single network timeout wakes no one. While an incident is open no repeat is sent — only a rare reminder on a cooldown. A separate \"unknown\" health separates a service being down from the probe being unable to tell: an expired token neither looks like an outage nor closes an open incident. State lives in SQLite, otherwise a container restart would re-announce failures already reported. On a confirmed outage the deployment's log tail is pulled and the model names the cause against a schema — cause, the line it rests on, first action, confidence.",
+      role: "Solo build: architecture, alerting policy, provider integrations.",
+      outcome:
+        "29 tests: flapping, deduplication, cooldown, mute, unknown health, persistence and incident lifecycle. A failing triage never drops the alert — knowing the service is down matters more than knowing why. Restarting a deployment from chat takes a separate confirmation: it is a production action.",
+    },
+  },
+  {
     slug: "remote-jobs-hub",
     title: "Remote Jobs Hub",
     isPrivateScope: false,
