@@ -6,7 +6,6 @@ const en = {
     work: "Work",
     capabilities: "Capabilities",
     about: "About",
-    notes: "Notes",
     contact: "Contact",
   },
   hero: {

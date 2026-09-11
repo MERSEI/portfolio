@@ -19,9 +19,25 @@ export async function generateMetadata(props: PageProps<"/[locale]/work/[slug]">
   const c = getCase(slug);
   if (!c) return {};
   const copy = c[locale as Locale];
+  const title = `${c.title} — Alex Fialko`;
   return {
-    title: `${c.title} — Alex Fialko`,
+    title,
     description: copy.tagline,
+    alternates: {
+      languages: { ru: `/ru/work/${slug}`, en: `/en/work/${slug}` },
+    },
+    openGraph: {
+      title,
+      description: copy.tagline,
+      type: "article",
+      locale: locale === "ru" ? "ru_RU" : "en_US",
+      url: `/${locale}/work/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: copy.tagline,
+    },
   };
 }
 

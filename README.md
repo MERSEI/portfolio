@@ -15,6 +15,11 @@ Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · Base UI (
   kept out of components in `lib/dictionaries/{ru,en}.ts`.
 - **Case studies** — described as data in `lib/cases.ts` and rendered by the single
   `app/[locale]/work/[slug]` route, so adding a project means adding an entry, not a page.
+  A `featured` flag controls which cases surface on the homepage grid.
+- **SEO** — per-locale and per-case metadata (title, description, OG/Twitter cards)
+  generated in `app/[locale]/layout.tsx` and `app/[locale]/work/[slug]/page.tsx`; OG
+  images render dynamically via `next/og` in `opengraph-image.tsx` files; `app/sitemap.ts`
+  and `app/robots.ts` cover both locales and every case.
 - **Theming** — `next-themes` with a class-based Tailwind 4 dark mode; no flash on load.
 - **Components** — shadcn primitives on Base UI in `components/ui`, page sections in
   `components/site`.

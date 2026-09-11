@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SITE_URL } from "@/lib/site";
 import "../globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -28,22 +29,30 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await props.params;
   const isRu = locale === "ru";
+  const title = "Alex Fialko — Full-Stack & AI Engineer";
+  const description = isRu
+    ? "Full-Stack & AI Engineer из Праги. AI-агенты, автоматизация, Telegram-боты, продуктовые MVP под ключ."
+    : "Full-Stack & AI Engineer based in Prague. AI agents, automation, Telegram bots, turnkey product MVPs.";
   return {
-    metadataBase: new URL("https://portfolio.vercel.app"),
-    title: "Alex Fialko — Full-Stack & AI Engineer",
-    description: isRu
-      ? "Full-Stack & AI Engineer из Праги. AI-агенты, автоматизация, Telegram-боты, продуктовые MVP под ключ."
-      : "Full-Stack & AI Engineer based in Prague. AI agents, automation, Telegram bots, turnkey product MVPs.",
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
     alternates: {
       languages: { ru: "/ru", en: "/en" },
     },
     openGraph: {
-      title: "Alex Fialko — Full-Stack & AI Engineer",
+      title,
       description: isRu
         ? "AI-агенты, автоматизация, Telegram-боты, продуктовые MVP под ключ."
         : "AI agents, automation, Telegram bots, turnkey product MVPs.",
       type: "website",
       locale: isRu ? "ru_RU" : "en_US",
+      url: `/${locale}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
     },
   };
 }

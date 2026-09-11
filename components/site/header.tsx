@@ -30,7 +30,6 @@ export function Header({
     { href: `/${locale}#work`, label: dict.nav.work },
     { href: `/${locale}#capabilities`, label: dict.nav.capabilities },
     { href: `/${locale}#about`, label: dict.nav.about },
-    { href: `/${locale}/notes`, label: dict.nav.notes },
     { href: `/${locale}#contact`, label: dict.nav.contact },
   ];
 

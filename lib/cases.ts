@@ -10,6 +10,7 @@ export type Case = {
   slug: string;
   title: string;
   isPrivateScope: boolean;
+  featured: boolean;
   stack: string[];
   links: { live?: string; repo?: string };
   ru: CaseLocaleCopy;
@@ -21,6 +22,7 @@ export const cases: Case[] = [
     slug: "debrief",
     title: "Debrief",
     isPrivateScope: true,
+    featured: false,
     stack: [
       "Python 3.11+",
       "PyAudioWPatch (WASAPI loopback)",
@@ -56,6 +58,7 @@ export const cases: Case[] = [
     slug: "pulse",
     title: "Pulse",
     isPrivateScope: true,
+    featured: false,
     stack: [
       "Python 3.11+ (asyncio)",
       "aiogram 3",
@@ -93,6 +96,7 @@ export const cases: Case[] = [
     slug: "remote-jobs-hub",
     title: "Remote Jobs Hub",
     isPrivateScope: false,
+    featured: true,
     stack: [
       "Python",
       "FastAPI",
@@ -132,6 +136,7 @@ export const cases: Case[] = [
     slug: "leadradar",
     title: "LeadRadar",
     isPrivateScope: false,
+    featured: true,
     stack: [
       "TypeScript (strict, ESM)",
       "BullMQ + Redis",
@@ -170,6 +175,7 @@ export const cases: Case[] = [
     slug: "agent-farm",
     title: "Agent Farm",
     isPrivateScope: true,
+    featured: false,
     stack: [
       "TypeScript",
       "Node.js 20",
@@ -207,6 +213,7 @@ export const cases: Case[] = [
     slug: "chronicles",
     title: "Хроники Судьбы / Chronicles",
     isPrivateScope: true,
+    featured: false,
     stack: [
       "TypeScript",
       "pnpm monorepo",
@@ -240,6 +247,7 @@ export const cases: Case[] = [
     slug: "crypto-widget",
     title: "crypto-widget",
     isPrivateScope: false,
+    featured: false,
     stack: ["Tauri 2", "Rust", "React 19", "TypeScript", "Binance API"],
     links: {
       repo: "https://github.com/MERSEI/crypto-widget",
@@ -268,6 +276,7 @@ export const cases: Case[] = [
     slug: "ton-testnet",
     title: "TON Testnet Wallet",
     isPrivateScope: false,
+    featured: true,
     stack: ["TypeScript", "React", "Vite", "WebSocket", "TON", "Vitest"],
     links: {
       repo: "https://github.com/MERSEI/Ton-testnet",
@@ -297,6 +306,7 @@ export const cases: Case[] = [
     slug: "data-rooms",
     title: "Data Room MVP",
     isPrivateScope: false,
+    featured: false,
     stack: [
       "React 19",
       "TypeScript",
@@ -333,6 +343,7 @@ export const cases: Case[] = [
     slug: "wallet-dashboard",
     title: "Wallet Analytics Dashboard",
     isPrivateScope: false,
+    featured: true,
     stack: ["Next.js", "TypeScript", "Etherscan V2 API", "Vitest", "Vercel"],
     links: {
       live: "https://dashboard-bice-rho-61.vercel.app",
@@ -363,6 +374,7 @@ export const cases: Case[] = [
     slug: "antitck",
     title: "antiTCK",
     isPrivateScope: false,
+    featured: false,
     stack: [
       "Node.js 22",
       "TypeScript",
@@ -401,6 +413,7 @@ export const cases: Case[] = [
     slug: "tr-dev",
     title: "Content Intelligence Bot",
     isPrivateScope: false,
+    featured: false,
     stack: [
       "Python",
       "aiogram 3",
@@ -439,6 +452,7 @@ export const cases: Case[] = [
     slug: "vibeide",
     title: "VibeIDE",
     isPrivateScope: false,
+    featured: true,
     stack: [
       "React",
       "Vite",
@@ -481,6 +495,7 @@ export const cases: Case[] = [
     slug: "ai-integrator",
     title: "AI Integrator Landing",
     isPrivateScope: false,
+    featured: true,
     stack: [
       "Next.js 15",
       "React",
@@ -520,6 +535,7 @@ export const cases: Case[] = [
     slug: "sporysh",
     title: "Sporysh",
     isPrivateScope: false,
+    featured: false,
     stack: ["WordPress", "HTML", "CSS", "JavaScript"],
     links: {
       live: "https://sporysh.pp.ua",

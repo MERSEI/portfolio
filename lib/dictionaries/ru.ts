@@ -6,7 +6,6 @@ const ru = {
     work: "Кейсы",
     capabilities: "Что делаю",
     about: "Обо мне",
-    notes: "Заметки",
     contact: "Контакты",
   },
   hero: {
