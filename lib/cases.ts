@@ -205,7 +205,7 @@ export const cases: Case[] = [
   },
   {
     slug: "chronicles",
-    title: "Хроники Судьбы / Chronicles",
+    title: "Chronicles",
     isPrivateScope: true,
     stack: [
       "TypeScript",
@@ -252,7 +252,7 @@ export const cases: Case[] = [
         "Пристыкованная к краю экрана «пилюля», которая раскрывается в живой watchlist Binance с графиками и алертами по цене и всплескам. Нативное поведение окна — always-on-top, докинг, клик-сквозь — сделано на стороне Rust, потому что из веб-слоя это не выражается. Фронт на React 19, состояние рынка приходит стримом.",
       role: "Соло-разработка, включая нативный слой.",
       outcome:
-        "Работающее десктоп-приложение, собирается как нативный бандл Tauri 2.",
+        "Работающее десктоп-приложение, собирается как нативный бандл Tauri 2. Торговые действия только ручные, за подтверждающей фразой: виджет сам не торгует.",
     },
     en: {
       tagline: "Resident desktop widget for peripheral market awareness",
@@ -261,7 +261,8 @@ export const cases: Case[] = [
       system:
         "A pill docked to the screen edge that expands into a live Binance watchlist with charts and price/spike alerts. Native window behaviour — always-on-top, docking, click-through — is handled on the Rust side, because the web layer simply can't express it. React 19 on the front, market state arriving as a stream.",
       role: "Solo build, native layer included.",
-      outcome: "A working desktop app, shipped as a native Tauri 2 bundle.",
+      outcome:
+        "A working desktop app, shipped as a native Tauri 2 bundle. Trading actions are manual and sit behind a confirmation phrase: the widget never trades on its own.",
     },
   },
   {
@@ -464,7 +465,7 @@ export const cases: Case[] = [
         "Monaco-редактор с CRDT-синхронизацией текста (Liveblocks + Yjs, ручной биндинг после того, как y-monaco оказался несовместим), мультиагентный DAG-оркестратор с параллельным выполнением через топологическую сортировку, RAG-пайплайн на pgvector с гибридным поиском (BM25 + vector), OpenTelemetry-трейсинг с двойным экспортом в Grafana Tempo. Все внешние интеграции построены по паттерну «real API + mock fallback» — демо работает без единого ключа.",
       role: "Соло-разработка в паре с Claude Code.",
       outcome:
-        "4 дня, 40+ коммитов, ~3500 строк React/JS + ~600 строк Express — задеплоено и работает.",
+        "Задеплоено и работает: 4 дня, 40+ коммитов. Демо открывается без единого ключа благодаря mock-fallback у каждой интеграции.",
     },
     en: {
       tagline: "AI dev environment in 4 days",
@@ -474,7 +475,7 @@ export const cases: Case[] = [
         "Monaco editor with CRDT text sync (Liveblocks + Yjs, hand-rolled binding after y-monaco proved incompatible), a multi-agent DAG orchestrator with parallel execution via topological sort, a pgvector RAG pipeline with hybrid BM25/vector search, and OpenTelemetry tracing dual-exported to Grafana Tempo. Every external integration follows a real-API-plus-mock-fallback pattern — the demo works with zero keys configured.",
       role: "Solo build, paired with Claude Code.",
       outcome:
-        "4 days, 40+ commits, ~3,500 lines of React/JS plus ~600 lines of Express — deployed and running.",
+        "Deployed and running: 4 days, 40+ commits. The demo opens with zero keys thanks to the mock fallback on every integration.",
     },
   },
   {
@@ -514,6 +515,150 @@ export const cases: Case[] = [
       role: "Solo build, design system and lead capture included.",
       outcome:
         "Deployed; the form sends the lead an auto-reply over Gmail SMTP and writes the submission to Upstash and Google Sheets regardless of mail status — an SMTP failure never takes the form down.",
+    },
+  },
+  {
+    slug: "streamwidget",
+    title: "StreamWidget",
+    isPrivateScope: true,
+    stack: [
+      "Chrome extension (MV3)",
+      "Python",
+      "FastAPI",
+      "WebSocket",
+      "DeepInfra (Qwen, Llama-3)",
+      "Railway",
+    ],
+    links: {},
+    ru: {
+      tagline: "Суфлёр для стримера: подсказки в реальном времени поверх чата",
+      problem:
+        "Ведущему прямого эфира некогда читать чат и придумывать ответ одновременно. Подсказка должна приходить за секунды, на языке зрителя, и не путать, кто в диалоге кто.",
+      system:
+        "Chrome-расширение читает чат и держит WebSocket с FastAPI-бэкендом на Railway. Генерацией занимаются две модели с разными ролями: основная ведёт диалог и всегда делает перевод, вторая — специализированная англоязычная — пишет только по-английски. Так сделано сознательно: у второй модели слабый русский, смысл терялся, а ники зрителей переводились как обычные слова. Поэтому перевод всегда за основной моделью, а ники перед ним маскируются плейсхолдерами и возвращаются на место после. Разбор ответа второй модели терпим к кривому JSON и делает один повтор.",
+      role: "Соло-разработка по заказу: расширение, бэкенд, маршрутизация моделей, деплой.",
+      outcome:
+        "Выкачено на Railway и проверено живым WebSocket-запросом после деплоя. Качество маршрутизации измеряется скриптом-бенчем на парах EN/RU (стоит центы за прогон), а не на ощущениях.",
+    },
+    en: {
+      tagline: "A live prompter for streamers: real-time suggestions over chat",
+      problem:
+        "A live host can't read chat and invent a reply at the same time. The suggestion must arrive within seconds, in the viewer's language, and never confuse who is who in the dialogue.",
+      system:
+        "A Chrome extension reads the chat and holds a WebSocket to a FastAPI backend on Railway. Two models with different jobs do the generating: the primary one drives the dialogue and always handles translation, the second — a specialised English-only model — writes only in English. That split is deliberate: the second model's Russian is weak, meaning got lost and viewer nicknames were translated like ordinary words. So translation always belongs to the primary model, and nicknames are masked with placeholders before it and restored after. Parsing of the second model's output tolerates malformed JSON and retries once.",
+      role: "Solo contract build: extension, backend, model routing, deployment.",
+      outcome:
+        "Shipped to Railway and verified with a live WebSocket request after deploy. Routing quality is measured by a bench script over EN/RU pairs (cents per run), not by feel.",
+    },
+  },
+  {
+    slug: "reporadar",
+    title: "RepoRadar",
+    isPrivateScope: true,
+    stack: [
+      "Python 3.12",
+      "FastAPI",
+      "Telethon",
+      "aiogram 3",
+      "Gemini 2.0 Flash",
+      "PostgreSQL 16 + SQLAlchemy 2 async",
+      "Alembic",
+      "Docker Compose",
+    ],
+    links: {},
+    ru: {
+      tagline: "Разбор GitHub-репозиториев из Telegram-чата в карточки",
+      problem:
+        "В чат каждый день падают ссылки на репозитории. Открывать каждый, читать README и решать «полезно ли мне» — рутина, которая съедает больше времени, чем сами находки.",
+      system:
+        "Telethon читает один целевой чат, ссылки на репозитории уходят в анализ Gemini со строгой схемой ответа, результат складывается в PostgreSQL и рассылается ботом карточкой. Синхронизация — POST /sync, который сразу отвечает 202 и работает фоновым воркером. Для базы две строки подключения: asyncpg для приложения и psycopg v3 для Alembic. Telethon-сессия живёт в Docker volume, авторизация — отдельным профилем compose, чтобы логин не смешивался с рабочим запуском.",
+      role: "Соло-разработка: архитектура, интеграции, схема БД, упаковка.",
+      outcome:
+        "MVP в Docker Compose, секреты вынесены в переменные окружения (разовый скрипт рассылки раньше хранил их в коде — исправлено). Репозиторий приватный, показана архитектура.",
+    },
+    en: {
+      tagline: "Turning GitHub links from a Telegram chat into digest cards",
+      problem:
+        "Repository links land in a chat every day. Opening each one, reading the README and deciding whether it's useful is a routine that costs more time than the finds are worth.",
+      system:
+        "Telethon reads a single target chat, repository links go to Gemini analysis against a strict response schema, results land in PostgreSQL and are broadcast by a bot as cards. Sync is POST /sync, which answers 202 at once and runs a background worker. The database has two connection strings: asyncpg for the app and psycopg v3 for Alembic. The Telethon session lives in a Docker volume, and authorisation is a separate compose profile so login never mixes with a normal run.",
+      role: "Solo build: architecture, integrations, schema, packaging.",
+      outcome:
+        "An MVP in Docker Compose with secrets moved to environment variables (a one-off broadcast script used to hold them in code — fixed). The repository is private; the architecture is shown here.",
+    },
+  },
+  {
+    slug: "personal-ai-ops",
+    title: "Personal AI Ops",
+    isPrivateScope: true,
+    stack: [
+      "Python 3.12",
+      "FastAPI",
+      "Telethon",
+      "Gemini 2.0 Flash",
+      "Pydantic",
+      "SQLAlchemy 2 async + Alembic",
+      "Notion API",
+      "structlog",
+      "tenacity",
+    ],
+    links: {},
+    ru: {
+      tagline: "Из переписки в задачи: чат превращается в проект со списком дел",
+      problem:
+        "Договорённости о проектах живут в Telegram-чатах и теряются среди сообщений. Ручной перенос в таск-трекер никто не делает, а полностью автономный агент, который сам пишет людям, — риск, на который я не готов.",
+      system:
+        "Фиксированный шестишаговый конвейер: Telethon читает только чаты из явного белого списка, снимок нормализуется, Gemini со строгой response_schema разбирает его на проект и задачи, Pydantic проверяет ответ, результат пишется в Postgres, затем в Notion, затем приходит уведомление отдельным ботом. Границы выбраны жёстко: читать, анализировать, структурировать, сохранить, уведомить. Никаких исходящих сообщений людям, никаких «роёв» агентов. OCR и транскрипция спроектированы как будущие сервисы, которые подключаются без правки оркестратора.",
+      role: "Соло-разработка: архитектура, схема данных, интеграции.",
+      outcome:
+        "Рабочий MVP с чёткой границей полномочий: система не может написать никому в обход меня. Оркестратор остаётся линейным и читаемым, расширения идут через сервисы, а не через условия внутри него.",
+    },
+    en: {
+      tagline: "From chat to tasks: a conversation becomes a project with a to-do list",
+      problem:
+        "Project agreements live in Telegram chats and get lost in the scroll. Nobody moves them into a tracker by hand, and a fully autonomous agent that writes to people on its own is a risk I won't take.",
+      system:
+        "A fixed six-step pipeline: Telethon reads only chats on an explicit whitelist, the snapshot is normalised, Gemini with a strict response_schema parses it into a project and tasks, Pydantic validates the reply, the result goes to Postgres, then Notion, then a notification arrives from a separate bot. The boundaries are deliberately tight: read, analyse, structure, save, notify. No outbound messages to people, no agent swarms. OCR and transcription are designed as future services that plug in without touching the orchestrator.",
+      role: "Solo build: architecture, data model, integrations.",
+      outcome:
+        "A working MVP with a clear limit on authority: the system cannot message anyone behind my back. The orchestrator stays linear and readable; extensions go in as services, not as conditionals inside it.",
+    },
+  },
+  {
+    slug: "ai-video-pipeline",
+    title: "AI Video Pipeline",
+    isPrivateScope: true,
+    stack: [
+      "Comfy Cloud (partner APIs)",
+      "Veo 3.1",
+      "Kling",
+      "Seedance",
+      "Wan 2.2",
+      "nano-banana",
+      "ElevenLabs",
+      "ffmpeg",
+      "PIL",
+    ],
+    links: {},
+    ru: {
+      tagline: "Вертикальные рекрутинговые ролики: от раскадровки до одного mp4",
+      problem:
+        "Видеомодели не держат пять смен кадра в одном дубле, коверкают кириллицу и держат палитру ровно до первого перегруза. А на выходе нужен один файл строго 15 секунд, 1080×1920, с читаемыми титрами.",
+      system:
+        "Конвейер из раскадровки (5 кадров 9:16), коротких дублей видеомодели и сборки в ffmpeg. Палитра закреплена в промптах и негативах, титры никогда не генерируются моделью — только drawtext со шрифтом с полной кириллицей, по одной строке на фильтр (перенос строки рисуется квадратом). Переходы встают в паузы между словами, длительность считается по фактическому ffprobe, а не по заказанной. Когда основная видеомодель падает с «high load», тот же промпт уходит на запасную. Опечатку в уже готовом ролике я исправил без перегенерации: нужную букву скопировал из соседнего слова в том же кадре, поэтому шрифт, кернинг и затухание совпали идеально.",
+      role: "Соло-разработка: пайплайн, промпты, сборка, пост-обработка.",
+      outcome:
+        "Сборка воспроизводима одной командой, длина сходится в 15.000 с. Стоимость сцены я считаю по реальному биллингу, а не по прайсу, и самую дорогую модель оставляю только там, где без неё нельзя. Все персонажи синтетические, без клонирования реальных людей.",
+    },
+    en: {
+      tagline: "Vertical recruitment videos: from storyboard to a single mp4",
+      problem:
+        "Video models can't hold five shot changes in one take, they mangle Cyrillic, and they keep a palette only until the first overload. Yet the output must be one file of exactly 15 seconds, 1080×1920, with legible titles.",
+      system:
+        "A pipeline of a storyboard (5 frames, 9:16), short video-model takes and an ffmpeg assembly. The palette is pinned in prompts and negatives, titles are never generated by the model — only drawtext with a full-Cyrillic font, one line per filter (a newline renders as a tofu box). Transitions sit in the gaps between words, durations come from the actual ffprobe, not the ordered ones. When the primary video model fails with \"high load\", the same prompt goes to a fallback. A typo in an already finished video I fixed without regenerating: the needed letter was copied from a neighbouring word in the same frame, so font, kerning and fade matched exactly.",
+      role: "Solo build: pipeline, prompts, assembly, post-processing.",
+      outcome:
+        "The build is reproducible in one command and the length lands on exactly 15.000 s. I price a scene from real billing, not the price list, and keep the most expensive model only where nothing else will do. All characters are synthetic — no cloning of real people.",
     },
   },
   {

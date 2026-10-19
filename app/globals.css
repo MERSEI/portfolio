@@ -12,7 +12,9 @@
   --color-warm-accent-2: var(--warm-accent-2);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --color-lime: var(--lime);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -52,54 +54,56 @@
 }
 
 :root {
-  /* Warm Builder — light */
-  --background: #F5F1E8;
-  --foreground: #1A1611;
-  --card: #EFE9DC;
-  --card-foreground: #1A1611;
-  --popover: #EFE9DC;
-  --popover-foreground: #1A1611;
-  --primary: #B85C1F;
-  --primary-foreground: #FBF6EC;
-  --secondary: #E5DDCA;
-  --secondary-foreground: #1A1611;
-  --muted: #E5DDCA;
-  --muted-foreground: #6B6355;
-  --accent: #E5DDCA;
-  --accent-foreground: #1A1611;
+  /* Signal — light: бумага + чернила, один акцент (лайм как заливка, тёмный олив как текст) */
+  --background: #F3F1EA;
+  --foreground: #0E0E0C;
+  --card: #FBFAF6;
+  --card-foreground: #0E0E0C;
+  --popover: #FBFAF6;
+  --popover-foreground: #0E0E0C;
+  --primary: #CFF53D;
+  --primary-foreground: #0B0B0A;
+  --secondary: #E7E4D8;
+  --secondary-foreground: #0E0E0C;
+  --muted: #E7E4D8;
+  --muted-foreground: #55554B;
+  --accent: #E7E4D8;
+  --accent-foreground: #0E0E0C;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(26, 22, 17, 0.12);
-  --input: rgba(26, 22, 17, 0.16);
-  --ring: #B85C1F;
-  --radius: 0.625rem;
-  --muted-fg: #6B6355;
-  --warm-accent: #B85C1F;
-  --warm-accent-2: #4F6B55;
+  --border: rgba(14, 14, 12, 0.14);
+  --input: rgba(14, 14, 12, 0.18);
+  --ring: #3F6B00;
+  --radius: 0.5rem;
+  --muted-fg: #55554B;
+  --warm-accent: #3F6B00;
+  --warm-accent-2: #55554B;
+  --lime: #CFF53D;
 }
 
 .dark {
-  /* Warm Builder — dark */
-  --background: #0A0908;
-  --foreground: #F5F1E8;
-  --card: #16140F;
-  --card-foreground: #F5F1E8;
-  --popover: #16140F;
-  --popover-foreground: #F5F1E8;
-  --primary: #E8863C;
-  --primary-foreground: #140F0A;
-  --secondary: #201C15;
-  --secondary-foreground: #F5F1E8;
-  --muted: #201C15;
-  --muted-foreground: #9C9385;
-  --accent: #201C15;
-  --accent-foreground: #F5F1E8;
+  /* Signal — dark: почти чёрный + кислотный лайм */
+  --background: #0B0B0A;
+  --foreground: #F3F1EA;
+  --card: #131312;
+  --card-foreground: #F3F1EA;
+  --popover: #131312;
+  --popover-foreground: #F3F1EA;
+  --primary: #CFF53D;
+  --primary-foreground: #0B0B0A;
+  --secondary: #1B1B19;
+  --secondary-foreground: #F3F1EA;
+  --muted: #1B1B19;
+  --muted-foreground: #A3A798;
+  --accent: #1B1B19;
+  --accent-foreground: #F3F1EA;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(197, 181, 155, 0.16);
-  --input: rgba(197, 181, 155, 0.2);
-  --ring: #E8863C;
-  --muted-fg: #9C9385;
-  --warm-accent: #E8863C;
-  --warm-accent-2: #6B8F71;
+  --border: rgba(243, 241, 234, 0.14);
+  --input: rgba(243, 241, 234, 0.18);
+  --ring: #CFF53D;
+  --muted-fg: #A3A798;
+  --warm-accent: #CFF53D;
+  --warm-accent-2: #A3A798;
+  --lime: #CFF53D;
 }
 
 @layer base {
@@ -111,5 +115,57 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll-reveal: стартовое состояние ставит только JS (класс .js на html), без JS контент виден */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--lime) 60%, transparent); }
+  50% { box-shadow: 0 0 0 7px transparent; }
+}
+.live-dot {
+  animation: pulse-dot 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track,
+  .live-dot {
+    animation: none;
   }
 }

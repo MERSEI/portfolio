@@ -1,78 +1,46 @@
 import Link from "next/link";
-import { Code2, Mail, Send } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, Code2, Mail, Send } from "lucide-react";
+import { CONTACT } from "@/lib/site";
 import type { Dictionary } from "@/lib/dictionaries";
 
-const EMAIL = "aleksfialko15@gmail.com";
-const GITHUB_URL = "https://github.com/MERSEI";
-const TELEGRAM_URL = "https://t.me/f1_owe";
-
 export function Contact({ dict }: { dict: Dictionary }) {
+  const items = [
+    { href: CONTACT.telegram, label: dict.contact.telegramLabel, hint: "@f1_owe", Icon: Send, external: true },
+    { href: `mailto:${CONTACT.email}`, label: dict.contact.emailLabel, hint: CONTACT.email, Icon: Mail, external: false },
+    { href: CONTACT.github, label: dict.contact.githubLabel, hint: "github.com/MERSEI", Icon: Code2, external: true },
+  ];
+
   return (
-    <section id="contact" className="border-b border-border/60">
-      <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28">
-        <p className="font-mono text-sm text-warm-accent">{dict.contact.eyebrow}</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {dict.contact.title}
-        </h2>
-        <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-          {dict.contact.body}
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href={TELEGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-border/70 bg-card px-4 py-2.5 text-sm text-foreground transition-colors hover:border-warm-accent/50"
-          >
-            <Send className="size-4 text-warm-accent" />
-            {dict.contact.telegramLabel}
-          </Link>
-          <Link
-            href={`mailto:${EMAIL}`}
-            className="flex items-center gap-2 rounded-lg border border-border/70 bg-card px-4 py-2.5 text-sm text-foreground transition-colors hover:border-warm-accent/50"
-          >
-            <Mail className="size-4 text-warm-accent" />
-            {dict.contact.emailLabel}
-          </Link>
-          <Link
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-border/70 bg-card px-4 py-2.5 text-sm text-foreground transition-colors hover:border-warm-accent/50"
-          >
-            <Code2 className="size-4 text-warm-accent" />
-            {dict.contact.githubLabel}
-          </Link>
+    <section id="contact" className="scroll-mt-16 border-b border-border">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+        <div data-reveal>
+          <p className="font-mono text-sm text-warm-accent">{dict.contact.eyebrow}</p>
+          <h2 className="mt-3 max-w-3xl font-display text-3xl font-medium tracking-tight sm:text-5xl">
+            {dict.contact.title}
+          </h2>
+          <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">{dict.contact.body}</p>
         </div>
 
-        <div className="mt-14 max-w-md rounded-lg border border-border/70 bg-card p-6">
-          <div className="flex items-center gap-3">
-            <h3 className="font-medium text-foreground">{dict.contact.newsletterTitle}</h3>
-            <Badge variant="secondary" className="font-mono text-[11px] font-normal">
-              {dict.playbooks.badge}
-            </Badge>
-          </div>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            {dict.contact.newsletterBody}
-          </p>
-          <div className="mt-4 flex gap-2">
-            <input
-              type="email"
-              disabled
-              placeholder={dict.contact.newsletterPlaceholder}
-              className="flex-1 rounded-md border border-border/70 bg-background px-3 py-2 text-sm text-muted-foreground placeholder:text-muted-foreground/70 disabled:cursor-not-allowed"
-            />
-            <button
-              type="button"
-              disabled
-              className="cursor-not-allowed rounded-md bg-warm-accent/40 px-4 py-2 text-sm font-medium text-[#140F0A]/60"
-            >
-              {dict.contact.newsletterCta}
-            </button>
-          </div>
-        </div>
+        <ul className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
+          {items.map(({ href, label, hint, Icon, external }) => (
+            <li key={label} className="bg-background">
+              <Link
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="group flex h-full items-start justify-between gap-4 p-6 transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                <span>
+                  <Icon className="size-5 text-warm-accent transition-colors group-hover:text-primary-foreground" />
+                  <span className="mt-5 block font-display text-lg font-medium">{label}</span>
+                  <span className="mt-1 block break-all font-mono text-xs text-muted-foreground transition-colors group-hover:text-primary-foreground/80">
+                    {hint}
+                  </span>
+                </span>
+                <ArrowUpRight className="size-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

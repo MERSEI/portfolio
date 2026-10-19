@@ -12,9 +12,6 @@ export function proxy(request: NextRequest) {
   );
   if (pathnameHasLocale) return;
 
-  // Root "/" is handled by app/page.tsx's own redirect — skip here to avoid a double hop.
-  if (pathname === "/") return;
-
   request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
 }

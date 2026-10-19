@@ -30,13 +30,12 @@ export function Header({
     { href: `/${locale}#work`, label: dict.nav.work },
     { href: `/${locale}#capabilities`, label: dict.nav.capabilities },
     { href: `/${locale}#about`, label: dict.nav.about },
-    { href: `/${locale}/notes`, label: dict.nav.notes },
     { href: `/${locale}#contact`, label: dict.nav.contact },
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href={`/${locale}`}
           className="font-mono text-sm font-medium tracking-tight text-foreground"
@@ -44,7 +43,7 @@ export function Header({
           alex<span className="text-warm-accent">.</span>fialko
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav aria-label={dict.a11y.mainNav} className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -60,25 +59,26 @@ export function Header({
           <LangSwitch
             locale={locale}
             label={dict.langSwitch.label}
+            ariaLabel={dict.a11y.langName}
             pathname={pathname}
           />
-          <ThemeToggle />
+          <ThemeToggle toLight={dict.a11y.toLight} toDark={dict.a11y.toDark} />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               render={<Button variant="ghost" size="icon" className="md:hidden" />}
             >
               <Menu className="size-5" />
-              <span className="sr-only">Menu</span>
+              <span className="sr-only">{dict.a11y.menu}</span>
             </SheetTrigger>
             <SheetContent side="right" className="w-64">
-              <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <nav className="mt-10 flex flex-col gap-6 px-4">
+              <SheetTitle className="sr-only">{dict.a11y.navigation}</SheetTitle>
+              <nav aria-label={dict.a11y.navigation} className="mt-10 flex flex-col gap-6 px-4">
                 {links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="font-mono text-lg text-foreground"
+                    className="font-display text-xl text-foreground"
                   >
                     {link.label}
                   </Link>

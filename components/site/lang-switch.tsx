@@ -4,10 +4,12 @@ import type { Locale } from "@/app/[locale]/layout";
 export function LangSwitch({
   locale,
   label,
+  ariaLabel,
   pathname,
 }: {
   locale: Locale;
   label: string;
+  ariaLabel: string;
   pathname: string;
 }) {
   const target: Locale = locale === "ru" ? "en" : "ru";
@@ -17,7 +19,10 @@ export function LangSwitch({
   return (
     <Link
       href={href}
-      className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+      hrefLang={target}
+      lang={target}
+      aria-label={ariaLabel}
+      className="rounded-md px-2 py-1 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
     >
       {label}
     </Link>
